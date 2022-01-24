@@ -83,7 +83,7 @@ export const Container: FC<Props> = (props) => {
         </HeaderDesktop>
         <HeaderMobile>
           <NavItemMobile
-            url={urls.home}
+            url={"/"}
             name={t({ message: "Home", id: "mainNav.home" })}
           />
           <NavItemMobile
