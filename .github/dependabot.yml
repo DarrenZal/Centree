@@ -1,0 +1,34 @@
+version: 2
+updates:
+  # site
+  - package-ecosystem: "npm"
+    directory: "/site"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependabot"
+    open-pull-requests-limit: 10
+    pull-request-branch-name:
+      separator: "-"
+
+  # app
+  - package-ecosystem: "npm"
+    directory: "/app"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependabot"
+    open-pull-requests-limit: 10
+    pull-request-branch-name:
+      separator: "-"
+
+  # lib
+  - package-ecosystem: "npm"
+    directory: "/lib"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependabot"
+    open-pull-requests-limit: 10
+    pull-request-branch-name:
+      separator: "-"
