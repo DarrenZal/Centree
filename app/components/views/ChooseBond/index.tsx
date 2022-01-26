@@ -21,7 +21,7 @@ export const useBond = (bond: Bond) => {
     price: bondState?.bondPrice,
     discount: bondState?.bondDiscount,
     name: {
-      mco2: "MCO2",
+      mco2: "Fairy Creek",
       bct: "BCT",
       klima_usdc_lp: "KLIMA/USDC LP",
       klima_bct_lp: "BCT/KLIMA LP",
@@ -29,7 +29,7 @@ export const useBond = (bond: Bond) => {
       // future bond names go here
     }[bond],
     description: {
-      mco2: "MOSS Carbon Credit Token",
+      mco2: "Fairy Creek NFT",
       bct: "Base Carbon Tons (Verra Carbon Standard)",
       klima_usdc_lp: "KLIMA/USDC Sushiswap LP Bonds",
       klima_bct_lp: "BCT/KLIMA Sushiswap LP Bonds",
@@ -45,14 +45,14 @@ export const useBond = (bond: Bond) => {
       // future bond hrefs go here
     }[bond],
     balanceUnit: {
-      mco2: "MCO2",
+      mco2: "Fairy Creek",
       bct: "BCT",
       klima_usdc_lp: "SLP",
       klima_bct_lp: "SLP",
       bct_usdc_lp: "SLP",
     }[bond],
     priceUnit: {
-      mco2: "MCO2",
+      mco2: "Fairy Creek",
       bct: "BCT",
       klima_usdc_lp: "USDC",
       klima_bct_lp: "BCT",
@@ -75,13 +75,11 @@ export function ChooseBond() {
     <div className={styles.stakeCard}>
       <div className={styles.stakeCard_header}>
         <h2 className={T.h4}>
-          <Trans id="choose_bond.title">Bond Carbon.</Trans>
+          <Trans id="choose_bond.title">Bond NFTs.</Trans>
         </h2>
         <p className={T.body2}>
           <Trans id="choose_bond.caption">
-            The best way to buy KLIMA. Commit carbon to our treasury, and
-            receive KLIMA at a discount. All bonds have a mandatory 5-day
-            vesting period.
+          Commit NFTs to our treasury, and receive CTR at a discount. All bonds have a mandatory 5-day vesting period.
           </Trans>
         </p>
       </div>

@@ -62,7 +62,7 @@ export const Info: FC<Props> = (props) => {
       decimals: 18,
     },
     {
-      name: "MCO2 Token",
+      name: "Fairy Creek NFT",
       address: addresses["mainnet"].mco2,
       ariaLabel: "Copy MCO2 token address.",
       metamaskAriaLabel: "Add MCO2 token to wallet.",
