@@ -37,6 +37,12 @@ export const generateLinks = ({
   showRedeemButton: boolean;
 }) => [
   {
+    to: "/conserve",
+    show: true,
+    text: "CONSERVE",
+    dataActive: path === "/conserve",
+  },
+  {
     to: "/redeem",
     show: showRedeemButton,
     text: "REDEEM",
@@ -48,12 +54,12 @@ export const generateLinks = ({
     text: "STAKE",
     dataActive: path === "/stake",
   },
-  {
+  /* {
     to: "/wrap",
     show: true,
     text: "WRAP",
     dataActive: path === "/wrap",
-  },
+  }, */
   {
     to: "/bonds",
     show: true,

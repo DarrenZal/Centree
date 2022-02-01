@@ -11,6 +11,7 @@ import { selectBalances, selectAppState } from "state/selectors";
 import { loadAppDetails } from "actions/app";
 import { calcBondDetails } from "actions/bonds";
 import { loadAccountDetails } from "actions/user";
+import { Conserve } from "components/views/Conserve";
 import { Stake } from "components/views/Stake";
 import { Redeem } from "components/views/Redeem";
 import { PKlima } from "components/views/PKlima";
@@ -18,7 +19,7 @@ import { Info } from "components/views/Info";
 import { Loading } from "components/views/Loading";
 import { ChooseBond } from "components/views/ChooseBond";
 import { Bond } from "components/views/Bond";
-import { Wrap } from "components/views/Wrap";
+//import { Wrap } from "components/views/Wrap";
 import { InvalidNetworkModal } from "components/InvalidNetworkModal";
 import { InvalidRPCModal } from "components/InvalidRPCModal";
 import { CheckURLBanner, skipCheckURLBanner } from "components/CheckURLBanner";
@@ -222,7 +223,7 @@ export const Home: FC = () => {
     );
     dispatch(
       calcBondDetails({
-        bond: "mco2",
+        bond: "Fairy Creek NFT",
         value: "",
         provider,
       })
@@ -346,8 +347,18 @@ export const Home: FC = () => {
                 element={
                   <>
                     <Loading />
-                    {path === "/" && <Navigate to="/stake" />}
+                    {path === "/" && <Navigate to="/conserve" />}
                   </>
+                }
+              />
+              <Route
+                path="/conserve"
+                element={
+                  <Conserve
+                    address={address}
+                    provider={provider}
+                    isConnected={isConnected}
+                  />
                 }
               />
               <Route
@@ -380,7 +391,7 @@ export const Home: FC = () => {
                   />
                 }
               />
-              <Route
+              {/* <Route
                 path="/wrap"
                 element={
                   <Wrap
@@ -389,7 +400,7 @@ export const Home: FC = () => {
                     isConnected={isConnected}
                   />
                 }
-              />
+              />  */}
               <Route
                 path="/info"
                 element={<Info provider={provider as providers.Web3Provider} />}

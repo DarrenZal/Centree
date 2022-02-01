@@ -7,6 +7,11 @@ const config = {
   async redirects() {
     return [
       {
+        source: "/conserve",
+        destination: "/#/conserve",
+        permanent: true,
+      },
+      {
         source: "/stake",
         destination: "/#/stake",
         permanent: true,
