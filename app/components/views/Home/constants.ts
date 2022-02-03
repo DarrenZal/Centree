@@ -43,6 +43,12 @@ export const generateLinks = ({
     dataActive: path === "/conserve",
   },
   {
+    to: "/vouchers",
+    show: true,
+    text: "VOUCHERS",
+    dataActive: path === "/vouchers",
+  },
+  {
     to: "/redeem",
     show: showRedeemButton,
     text: "REDEEM",

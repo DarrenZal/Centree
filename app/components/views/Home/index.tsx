@@ -12,6 +12,7 @@ import { loadAppDetails } from "actions/app";
 import { calcBondDetails } from "actions/bonds";
 import { loadAccountDetails } from "actions/user";
 import { Conserve } from "components/views/Conserve";
+import { Vouchers } from "components/views/Vouchers";
 import { Stake } from "components/views/Stake";
 import { Redeem } from "components/views/Redeem";
 import { PKlima } from "components/views/PKlima";
@@ -355,6 +356,16 @@ export const Home: FC = () => {
                 path="/conserve"
                 element={
                   <Conserve
+                    address={address}
+                    provider={provider}
+                    isConnected={isConnected}
+                  />
+                }
+              />
+              <Route
+                path="/vouchers"
+                element={
+                  <Vouchers
                     address={address}
                     provider={provider}
                     isConnected={isConnected}
