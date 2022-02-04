@@ -222,7 +222,7 @@ msgstr "home"
 
 #: components/views/Home/index.tsx:321
 msgid "header.welcome"
-msgstr "Welcome to the Centree dApp. Bond carbon to buy CTR. Stake CTR to earn interest."
+msgstr "test."
 
 #: components/views/Bond/index.tsx:375
 msgid "nav.back"

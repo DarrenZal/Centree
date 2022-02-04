@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";
 import React, { FC, useState } from "react";
 import { useSelector } from "react-redux";
 import { providers } from "ethers";
 import { selectNotificationStatus } from "state/selectors";
 import { setAppState, AppNotificationStatus, TxnStatus } from "state/app";
 import InfoOutlined from "@mui/icons-material/InfoOutlined";
+import classNames from "classnames";
+import T from "@klimadao/lib/theme/typography.module.css";
 
 import {
   changeApprovalTransaction,
@@ -209,228 +212,41 @@ export const Conserve = (props: Props) => {
       <div className={styles.conserveCard_header}>
         <h2 className={t.h4}>Conserve & Regenerate.</h2>
         <p className={t.body2}>
-          Purchase NFTs to conserve forests<br/>
+          Purchase CTR and vote to conserve forests<br/>
           Funds from NFTs go towards conservation and regeneration<br/>
           A Stewardship Tenure is granted to the NFT owner <br/>
           NFT owner delgates maintenence to Stewards on the Land <br/>
           The NFT represents the holistic value of the forests
         </p>
       </div>
+      <Link to="buy" key="buyKey">
+            <div className={styles.bondLink} key="buy CTR key">
+              <div>
+                <h3 className="this classname">Buy CTR</h3>
+                <p
+                  className="test classname"
+                >
+                </p>
+              </div>
+            </div>
+          </Link>
+          <Link to="vote" key="voteKey">
+            <div className={styles.bondLink} key="vote key">
+            <div>
+                <h3 className={T.subtitle2}>Vote to Conserve</h3>
+                <p
+                  className={classNames(styles.bondLink_description, T.caption)}
+                >
+                  {"Use CTR to vote on forests to conserve"}
+                </p>
+              </div>
+            </div>
+          </Link>
       <div className={styles.inputsContainer}>
-        <div className={styles.conserveSwitch}>
-          <button
-            className={styles.switchButton}
-            type="button"
-            onClick={() => {
-              setQuantity("");
-              setStatus(null);
-              setView("conserve");
-            }}
-            data-active={view === "conserve"}
-          >
-            Stake
-          </button>
-          <button
-            className={styles.switchButton}
-            type="button"
-            onClick={() => {
-              setQuantity("");
-              setStatus(null);
-              setView("unstake");
-            }}
-            data-active={view === "conserve"}
-          >
-            Unstake
-          </button>
-        </div>
-        <div className={styles.stakeInput}>
-          <input
-            className={styles.stakeInput_input}
-            value={quantity}
-            onChange={(e) => {
-              setQuantity(e.target.value);
-              setStatus(null);
-            }}
-            type="number"
-            placeholder={`Amount to ${
-              { stake: "stake", unstake: "unstake" }[view]
-            }`}
-            min="0"
-          />
-          <button
-            className={styles.stakeInput_button}
-            type="button"
-            onClick={setMax}
-          >
-            Max
-          </button>
-        </div>
+      
       </div>
 
-      <ul className={styles.dataContainer}>
-        {address && (
-          <li className={styles.dataContainer_address}>
-            {concatAddress(address)}
-          </li>
-        )}
-        {singletonSource}
-        <li className={styles.dataContainer_row}>
-          <div className={styles.dataContainer_label}>
-            Balance
-            <TextInfoTooltip
-              singleton={singleton}
-              content="Unstaked KLIMA, not generating interest"
-            >
-              <div tabIndex={0} className={styles.infoIconWrapper}>
-                <InfoOutlined />
-              </div>
-            </TextInfoTooltip>
-          </div>
-          <div className={styles.dataContainer_value}>
-            <WithPlaceholder
-              condition={!isConnected}
-              placeholder="NOT CONNECTED"
-            >
-              <span>{trimWithPlaceholder(balances?.klima, 4)}</span> KLIMA
-            </WithPlaceholder>
-          </div>
-        </li>
-
-        <li className={styles.dataContainer_row}>
-          <div className={styles.dataContainer_label}>
-            Staked
-            <TextInfoTooltip
-              singleton={singleton}
-              content="Staked KLIMA generating interest"
-            >
-              <div tabIndex={0} className={styles.infoIconWrapper}>
-                <InfoOutlined />
-              </div>
-            </TextInfoTooltip>
-          </div>
-          <div className={styles.dataContainer_value}>
-            <WithPlaceholder
-              condition={!isConnected}
-              placeholder="NOT CONNECTED"
-            >
-              <span>{trimWithPlaceholder(balances?.sklima, 4)}</span> sKLIMA
-            </WithPlaceholder>
-          </div>
-        </li>
-        <li className={styles.dataContainer_row}>
-          <div className={styles.dataContainer_label}>
-            Rebase rate
-            <TextInfoTooltip
-              singleton={singleton}
-              content="Percent interest to be rewarded at next rebase"
-            >
-              <div tabIndex={0} className={styles.infoIconWrapper}>
-                <InfoOutlined />
-              </div>
-            </TextInfoTooltip>
-          </div>
-          <div className={styles.dataContainer_value}>
-            <span>{trimWithPlaceholder(nextRebasePercent, 2)}</span>%
-          </div>
-        </li>
-        <li className={styles.dataContainer_row}>
-          <div className={styles.dataContainer_label}>
-            Rebase value
-            <TextInfoTooltip
-              singleton={singleton}
-              content="Approximate amount of sKLIMA you will receive at next rebase"
-            >
-              <div tabIndex={0} className={styles.infoIconWrapper}>
-                <InfoOutlined />
-              </div>
-            </TextInfoTooltip>
-          </div>
-          <div className={styles.dataContainer_value}>
-            <span>{trimWithPlaceholder(nextRebaseValue, 5)}</span> sKLIMA
-          </div>
-        </li>
-        <li className={styles.dataContainer_row}>
-          <div className={styles.dataContainer_label}>
-            <Trans>Next rebase (est.)</Trans>
-            <TextInfoTooltip
-              singleton={singleton}
-              content="Approximate time remaining until next rewards distribution"
-            >
-              <div tabIndex={0} className={styles.infoIconWrapper}>
-                <InfoOutlined />
-              </div>
-            </TextInfoTooltip>
-          </div>
-          <div className={styles.dataContainer_value}>
-            <span>{timeUntilRebase()}</span>
-          </div>
-        </li>
-        <li className={styles.dataContainer_row}>
-          <div className={styles.dataContainer_label}>
-            ROI (5-day rate)
-            <TextInfoTooltip
-              singleton={singleton}
-              content="Approximate return on investment, including compounding interest, should you remain staked for 5 days."
-            >
-              <div tabIndex={0} className={styles.infoIconWrapper}>
-                <InfoOutlined />
-              </div>
-            </TextInfoTooltip>
-          </div>
-          <div className={styles.dataContainer_value}>
-            <span>{trimWithPlaceholder(fiveDayRatePercent, 2)}</span>%
-          </div>
-        </li>
-
-        <li className={styles.dataContainer_row}>
-          <div className={styles.dataContainer_label}>
-            APY
-            <TextInfoTooltip
-              singleton={singleton}
-              content="Annual Percentage Yield, including compounding interest, should the current reward rate remain unchanged for 12 months (rates may be subject to change)"
-            >
-              <div tabIndex={0} className={styles.infoIconWrapper}>
-                <InfoOutlined />
-              </div>
-            </TextInfoTooltip>
-          </div>
-          <div className={styles.dataContainer_value}>
-            <span>{trimWithPlaceholder(stakingAPYPercent, 2)}</span>%
-          </div>
-        </li>
-
-        <li className={styles.dataContainer_row}>
-          <div className={styles.dataContainer_label}>
-            Current index
-            <TextInfoTooltip
-              singleton={singleton}
-              content="Amount you would have today if you staked 1 KLIMA on launch day. Useful for accounting purposes."
-            >
-              <div tabIndex={0} className={styles.infoIconWrapper}>
-                <InfoOutlined />
-              </div>
-            </TextInfoTooltip>
-          </div>
-          <div className={styles.dataContainer_value}>
-            <span>{trimWithPlaceholder(currentIndex, 4)}</span> KLIMA
-          </div>
-        </li>
-      </ul>
-      <div className={styles.buttonRow}>
-        <div />
-        {showSpinner ? (
-          <div className={styles.buttonRow_spinner}>
-            <Spinner />
-          </div>
-        ) : (
-          <div />
-        )}
-        <button
-          type="button"
-          className={styles.submitButton}
-          {...getButtonProps()}
-        />
-      </div>
+      
     </div>
   );
 };

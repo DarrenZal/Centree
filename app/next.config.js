@@ -12,6 +12,11 @@ const config = {
         permanent: true,
       },
       {
+        source: "/conserve/buy",
+        destination: "/#/conserve/buy",
+        permanent: true,
+      },
+      {
         source: "/stake",
         destination: "/#/stake",
         permanent: true,

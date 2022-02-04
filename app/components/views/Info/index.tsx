@@ -96,36 +96,33 @@ export const Info: FC<Props> = (props) => {
         <h2 className={t.h4}>{"Info & FAQ"}</h2>
         <p className={t.body2}>
           Common app-related questions and useful links. For comprehensive
-          reading on KlimaDAO, see our{" "}
+          reading on Centree, see our{" "}
           <a target="_blank" rel="noreferrer noopener" href={urls.officialDocs}>
-            official docs
+            Official Docs
           </a>
         </p>
       </div>
       <div className={styles.infoSection}>
         <h3 className={t.overline}>FAQ</h3>
         <div style={{ display: "grid", gap: "2.4rem" }}>
+        <div style={{ display: "grid", gap: "0.8rem" }}>
+            <h4 className={t.h5}>What is CTR?</h4>
+            <p className={t.body2}>
+              - CTR is a token used to conserve and invest in forests.<br/>
+              - CTR is first bought for cash and used to vote on conservation projects.<br/>
+              - Cash is used for conservation and CTR is exchanged for NFTs representing a Stewardship Tenure.<br/>
+              - NFTs can be exchanged for CTR at a discount.<br/>
+              - CTR obtained by bonding NFTs cannot be used for conservation, but can be staked to earn interest.
+            </p>
+          </div>
           <div style={{ display: "grid", gap: "0.4rem" }}>
-            <h4 className={t.h5}>Where can I get KLIMA?</h4>
+            <h4 className={t.h5}>Where can I get CTR?</h4>
             <p className={t.body2}>
               See our{" "}
               <a target="_blank" rel="noreferrer noopener" href={urls.tutorial}>
                 tutorial for newcomers
               </a>
               .
-            </p>
-          </div>
-          <div style={{ display: "grid", gap: "0.8rem" }}>
-            <h4 className={t.h5}>Why won't the dApp load for me?</h4>
-            <p className={t.body2}>
-              If the app says 'loading...' this is likely a problem with your
-              network configuration in Metamask. To fix this: <br />
-              1. Open Metamask and switch to Ethereum Mainnet <br />
-              2. Go to Settings/Networks/Polygon and click 'delete' <br />
-              3. Return to dapp.klimadao.finance and click 'switch to mainnet'.{" "}
-              <br />
-              Metamask should prompt you to add Polygon, with the correct RPC
-              configuration.
             </p>
           </div>
           <div style={{ display: "grid", gap: "0.8rem" }}>
@@ -143,36 +140,6 @@ export const Info: FC<Props> = (props) => {
               to fix the issue.
             </p>
           </div>
-        </div>
-      </div>
-      <div className={styles.infoSection}>
-        <h3 className={t.overline}>OFFICIAL POLYGON ADDRESSES</h3>
-        <div style={{ display: "grid", gap: "0.4rem" }}>
-          {addressInfo.map((info) => (
-            <div key={info.address}>
-              <p>{info.name}</p>
-              <div className={styles.addressRow}>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={`https://polygonscan.com/address/${info.address}`}
-                >
-                  {concatAddress(info.address)}
-                </a>
-                <CopyAddressButton
-                  ariaLabel={info.ariaLabel}
-                  address={info.address}
-                />
-                {typeof props.provider?.provider?.request === "function" &&
-                  props.provider.provider.isMetaMask && (
-                    <AddToMetaMaskButton
-                      info={info}
-                      provider={props.provider}
-                    />
-                  )}
-              </div>
-            </div>
-          ))}
         </div>
       </div>
       <div className={styles.infoSection}>

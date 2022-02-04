@@ -1,12 +1,14 @@
+import { Link } from "react-router-dom";
 import React, { FC, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import classNames from "classnames";
-import T from "@klimadao/lib/theme/typography.module.css";
 import { providers } from "ethers";
 import { selectNotificationStatus } from "state/selectors";
 import { setAppState, AppNotificationStatus, TxnStatus } from "state/app";
 import InfoOutlined from "@mui/icons-material/InfoOutlined";
+import LeftOutlined from "@mui/icons-material/KeyboardArrowLeftRounded";
+import typography from "@klimadao/lib/theme/typography";
+import classNames from "classnames";
+
 
 import {
   changeApprovalTransaction,
@@ -51,10 +53,10 @@ interface Props {
   isConnected: boolean;
 }
 
-export const Vouchers = (props: Props) => {
+export const Buy = (props: Props) => {
   const { provider, address, isConnected } = props;
   const dispatch = useAppDispatch();
-  const [view, setView] = useState("vouchers");
+  const [view, setView] = useState("conserve");
   const fullStatus: AppNotificationStatus | null = useSelector(
     selectNotificationStatus
   );
@@ -209,49 +211,19 @@ export const Vouchers = (props: Props) => {
 
   return (
     <div className={styles.conserveCard}>
-      <div className={styles.conserveCard_header}>
-        <h2 className={t.h4}>Vouchers</h2>
-        <p className={t.body2}>
-          <a target="_blank" href="http://localhost:3000/">
-            <div className={styles.bondLink} key={34324}>
-              <div>
-                <h3 className={T.subtitle2}>Create Vouchers</h3>
-                <p
-                  className={classNames(styles.bondLink_description, T.caption)}
-                >
-                  {"Create a voucher redeamable for your goods and services"}
-                </p>
-              </div>
-
-            </div>
-          </a><br/>
-          <a target="_blank" href="http://localhost:3000/marketplace">
-            <div className={styles.bondLink} key={34324}>
-              <div>
-                <h3 className={T.subtitle2}>Browse Vouchers</h3>
-                <p
-                  className={classNames(styles.bondLink_description, T.caption)}
-                >
-                  {"Browse vouchers for sale."}
-                </p>
-              </div>
-
-            </div>
-          </a><br/>
-          <a target="_blank" href="http://localhost:3000/marketplace">
-            <div className={styles.bondLink} key={34324}>
-              <div>
-                <h3 className={T.subtitle2}>Create a community currency</h3>
-                <p
-                  className={classNames(styles.bondLink_description, T.caption)}
-                >
-                  {"Create a currency backed by goods and services of your community."}
-                </p>
-              </div>
-
-            </div>
-          </a>
-        </p>
+      <Link
+          to="/conserve"
+          className={classNames(
+            typography.button,
+            styles.bondHeader_backButton
+          )}
+        >
+          <LeftOutlined />
+          <Trans id="nav.back">BACK</Trans>
+        </Link>
+      Buy CTR with stable token...
+      <div className={styles.inputsContainer}>
+      
       </div>
 
       

@@ -222,7 +222,7 @@ msgstr ""
 
 #: components/views/Home/index.tsx:321
 msgid "header.welcome"
-msgstr ""
+msgstr "dsfsdfsfsdfs"
 
 #: components/views/Bond/index.tsx:375
 msgid "nav.back"

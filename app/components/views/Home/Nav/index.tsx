@@ -12,8 +12,6 @@ const Nav: FC<NavProps> = ({ chainId, links }) => {
       {chainId === 80001 && (
         <p className={styles.testnet_warning}>
           ⚠️You are connected to <strong>testnet</strong>
-          <br />
-          <em>{`"where everything is made up and the points don't matter."`}</em>
         </p>
       )}
       {visibleLinks.map((link) => {

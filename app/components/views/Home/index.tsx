@@ -12,6 +12,8 @@ import { loadAppDetails } from "actions/app";
 import { calcBondDetails } from "actions/bonds";
 import { loadAccountDetails } from "actions/user";
 import { Conserve } from "components/views/Conserve";
+import { Buy } from "components/views/Buy";
+import { Vote } from "components/views/Vote";
 import { Vouchers } from "components/views/Vouchers";
 import { Stake } from "components/views/Stake";
 import { Redeem } from "components/views/Redeem";
@@ -136,9 +138,6 @@ export const Home: FC = () => {
   const dispatch = useAppDispatch();
   const [chainId, setChainId] = useState<number>();
   const [showRPCModal, setShowRPCModal] = useState(false);
-  const [showCheckURLBanner, setShowCheckURLBanner] = useState(
-    !skipCheckURLBanner()
-  );
 
   const [provider, address, web3Modal, loadWeb3Modal] = useProvider();
   const { pathname } = useLocation();
@@ -320,9 +319,11 @@ export const Home: FC = () => {
                 </a>
               </div>
               <p className={typography.h6} style={{ maxWidth: "46rem" }}>
-                <Trans id="header.welcome">
-                  Welcome to the Klima dApp. Bond carbon to buy KLIMA. Stake
-                  KLIMA to earn interest.
+                <Trans >
+                  Welcome to the Centree Commons.<br/>
+                  Finance conservation to earn NFTs.<br/>
+                  Bond NFTs to earn CTR.<br/>
+                  Stake CTR to earn interest.
                 </Trans>
               </p>
             </div>
@@ -348,7 +349,7 @@ export const Home: FC = () => {
                 element={
                   <>
                     <Loading />
-                    {path === "/" && <Navigate to="/conserve" />}
+                    {path === "/" && <Navigate to="/info" />}
                   </>
                 }
               />
@@ -356,6 +357,26 @@ export const Home: FC = () => {
                 path="/conserve"
                 element={
                   <Conserve
+                    address={address}
+                    provider={provider}
+                    isConnected={isConnected}
+                  />
+                }
+              />
+              <Route
+                path="/conserve/buy"
+                element={
+                  <Buy
+                    address={address}
+                    provider={provider}
+                    isConnected={isConnected}
+                  />
+                }
+              />
+              <Route
+                path="/conserve/vote"
+                element={
+                  <Vote
                     address={address}
                     provider={provider}
                     isConnected={isConnected}
@@ -466,13 +487,6 @@ export const Home: FC = () => {
         <InvalidRPCModal
           onHide={() => {
             setShowRPCModal(false);
-          }}
-        />
-      )}
-      {showCheckURLBanner && (
-        <CheckURLBanner
-          onHide={() => {
-            setShowCheckURLBanner(false);
           }}
         />
       )}
