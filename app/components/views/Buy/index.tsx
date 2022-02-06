@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React, { FC, useState } from "react";
+import React, { useState, useEffect, FC, ChangeEvent } from "react";
 import { useSelector } from "react-redux";
 import { providers } from "ethers";
 import { selectNotificationStatus } from "state/selectors";
@@ -26,11 +26,10 @@ import { Trans } from "@lingui/macro";
 interface Props {
   provider: providers.JsonRpcProvider;
   address?: string;
-  isConnected: boolean;
+  isConnected?: boolean;
 }
 
-
-export const Buy = (props: Props) => {
+export const Buy: FC<Props> = (props) => {
   const [quantity, setQuantity] = useState("");
   const { provider, address, isConnected } = props;
   const dispatch = useAppDispatch();
@@ -59,7 +58,7 @@ export const Buy = (props: Props) => {
       await buyCTR({
         value: quantity,
         provider: props.provider,
-        address: signer.toString(),
+        address: props.address,
         onStatus: setStatus,
       });
     } catch (error) {

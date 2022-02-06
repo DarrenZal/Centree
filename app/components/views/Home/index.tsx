@@ -190,6 +190,7 @@ export const Home: FC = () => {
   const initApp = async () => {
     dispatch(
       loadAppDetails({
+        provider,
         onRPCError: handleRPCError,
       })
     );

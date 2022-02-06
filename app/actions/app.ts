@@ -1,5 +1,5 @@
 import { ethers, providers } from "ethers";
-import { getDefaultProvider } from "@ethersproject/providers";
+import { getDefaultProvider } from "ethers";
 
 import { Thunk } from "state";
 import { setAppState } from "state/app";
@@ -11,13 +11,16 @@ import SKlima from "@klimadao/lib/abi/sKlima.json";
 import IERC20 from "@klimadao/lib/abi/IERC20.json";
 import Centree from "@klimadao/lib/abi/Centree.json";
 
-export const loadAppDetails = (params: { onRPCError: () => void }): Thunk => {
+export const loadAppDetails = (params: {
+  provider: providers.JsonRpcProvider;
+  onRPCError: () => void;
+}): Thunk => {
   return async (dispatch) => {
     try {
       //alert("start");
       const provider = await getDefaultProvider("ropsten");
       const CentreeContract = new ethers.Contract(
-        "0x57E99cBB69FBBd90d671f5EaBddc984D2402836E",
+        "0xA20F2a67E14843b76f8Ab1eaAE50058e5747fD70",
         Centree.abi,
         provider
       );

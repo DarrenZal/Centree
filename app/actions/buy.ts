@@ -1,20 +1,12 @@
 import { ethers, providers } from "ethers";
+import React, { FC, useState } from "react";
 import { Thunk } from "state";
+import { setCTRPrice } from "state/buy";
 import { OnStatusHandler } from "./utils";
 import Centree from "@klimadao/lib/abi/Centree.json";
-
-export const get_CTR_price = async (params: {
-  provider: providers.JsonRpcProvider;
-  onStatus: OnStatusHandler;
-}) => {
-  alert("start");
-  const signer = params.provider.getSigner();
-  const contractAddress = "0x57E99cBB69FBBd90d671f5EaBddc984D2402836E";
-  const contract = new ethers.Contract(contractAddress, Centree.abi, signer);
-  const ctrPrice = await contract.ctr_price();
-  alert(ctrPrice);
-  return ctrPrice;
-};
+import { formatUnits } from "@klimadao/lib/utils";
+import { addresses, Bond } from "@klimadao/lib/constants";
+import { getDefaultProvider } from "@ethersproject/providers";
 
 export const buyCTR = async (params: {
   value: string;
@@ -23,15 +15,20 @@ export const buyCTR = async (params: {
   onStatus: OnStatusHandler;
 }) => {
   try {
-    const signer = params.provider.getSigner();
-    const contractAddress = "0x57E99cBB69FBBd90d671f5EaBddc984D2402836E";
-    const contract = new ethers.Contract(contractAddress, Centree.abi, signer);
-    const valueInWei = ethers.utils.parseUnits(params.value, "ether");
+    //const provider = await getDefaultProvider("ropsten");
+    const contractAddress = "0xA20F2a67E14843b76f8Ab1eaAE50058e5747fD70";
+    const contract = new ethers.Contract(
+      "0xA20F2a67E14843b76f8Ab1eaAE50058e5747fD70",
+      Centree.abi,
+      params.provider.getSigner()
+    );
     params.onStatus("userConfirmation", "");
+    alert(params.address);
+    alert(params.value);
     const txn = await contract.buyCTR(params.address, {
       gasPrice: ethers.utils.parseUnits("100", "gwei"),
       gasLimit: "99000",
-      value: ethers.utils.parseEther("0.001"),
+      value: params.value,
     });
     params.onStatus("networkConfirmation", "");
     await txn.wait(1);
