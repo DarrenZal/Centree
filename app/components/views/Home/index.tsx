@@ -9,11 +9,12 @@ import typography from "@klimadao/lib/theme/typography.module.css";
 import { useSelector } from "react-redux";
 import { selectBalances, selectAppState } from "state/selectors";
 import { loadAppDetails } from "actions/app";
-import { calcBondDetails } from "actions/bonds";
+//import { calcBondDetails } from "actions/bonds";
 import { loadAccountDetails } from "actions/user";
 import { Conserve } from "components/views/Conserve";
 import { Buy } from "components/views/Buy";
 import { Vote } from "components/views/Vote";
+import { FairyCreek } from "components/views/FairyCreek";
 import { Vouchers } from "components/views/Vouchers";
 import { Stake } from "components/views/Stake";
 import { Redeem } from "components/views/Redeem";
@@ -189,11 +190,10 @@ export const Home: FC = () => {
   const initApp = async () => {
     dispatch(
       loadAppDetails({
-        provider,
         onRPCError: handleRPCError,
       })
     );
-    dispatch(
+    /* dispatch(
       calcBondDetails({
         bond: "klima_bct_lp",
         value: "",
@@ -227,7 +227,7 @@ export const Home: FC = () => {
         value: "",
         provider,
       })
-    );
+    ); */
   };
 
   useEffect(() => {
@@ -384,6 +384,16 @@ export const Home: FC = () => {
                 }
               />
               <Route
+                path="/conserve/vote/FairyCreek"
+                element={
+                  <FairyCreek
+                    address={address}
+                    provider={provider}
+                    isConnected={isConnected}
+                  />
+                }
+              />
+              <Route
                 path="/vouchers"
                 element={
                   <Vouchers
@@ -482,7 +492,6 @@ export const Home: FC = () => {
           </div>
         </footer>
       </div>
-      <InvalidNetworkModal provider={provider} />
       {showRPCModal && (
         <InvalidRPCModal
           onHide={() => {

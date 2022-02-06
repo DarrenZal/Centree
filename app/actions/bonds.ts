@@ -70,7 +70,7 @@ export function contractForReserve(params: {
   );
 }
 
-const getBCTMarketPrice = async (params: {
+/* const getBCTMarketPrice = async (params: {
   provider: providers.JsonRpcProvider;
 }) => {
   const pairContract = new ethers.Contract(
@@ -81,7 +81,7 @@ const getBCTMarketPrice = async (params: {
   const reserves = await pairContract.getReserves();
   // [BCT, KLIMA] - KLIMA has 9 decimals, BCT has 18 decimals
   return reserves[0] / (reserves[1] * Math.pow(10, 9));
-};
+}; */
 
 // for Klima/USDC LP
 const getUSDCMarketPrice = async (params: {
@@ -114,7 +114,7 @@ const getMCO2MarketPrice = async (params: {
   return KLIMAUSDCPrice / MCO2USDCPrice;
 };
 
-export const calcBondDetails = (params: {
+/* export const calcBondDetails = (params: {
   bond: Bond;
   value: string;
   provider: providers.JsonRpcProvider;
@@ -127,7 +127,7 @@ export const calcBondDetails = (params: {
       amountInWei = ethers.utils.parseEther(params.value);
     }
 
-    const bondContract = contractForBond({
+     const bondContract = contractForBond({
       bond: params.bond,
       provider: params.provider,
     });
@@ -138,19 +138,19 @@ export const calcBondDetails = (params: {
         : addresses["mainnet"].bond_calc,
       BondCalcContract.abi,
       params.provider
-    );
+    ); 
 
-    const getMarketPrice = {
+     const getMarketPrice = {
       mco2: getMCO2MarketPrice,
       klima_usdc_lp: getUSDCMarketPrice,
       klima_bct_lp: getBCTMarketPrice,
       bct_usdc_lp: getBCTMarketPrice,
       bct: getBCTMarketPrice,
-    }[params.bond];
+    }[params.bond]; 
 
-    const marketPrice = await getMarketPrice({
+     const marketPrice = await getMarketPrice({
       provider: params.provider,
-    });
+    }); 
 
     const terms = await bondContract.terms();
     const maxBondPrice = await bondContract.maxPayout();
@@ -204,7 +204,7 @@ export const calcBondDetails = (params: {
       })
     );
   };
-};
+}; */
 
 export const changeApprovalTransaction = async (params: {
   provider: providers.JsonRpcProvider;
@@ -243,72 +243,10 @@ export const calculateUserBondDetails = (params: {
     if (!params.address) return;
 
     // Calculate bond details.
-    const bondContract = contractForBond({
+    /*   const bondContract = contractForBond({
       bond: params.bond,
       provider: params.provider,
-    });
-    const reserveContract = contractForReserve({
-      bond: params.bond,
-      providerOrSigner: params.provider,
-    });
-    const bondDetails = await bondContract.bondInfo(params.address);
-    const interestDue = bondDetails[0];
-    const bondMaturationBlock = +bondDetails[1] + +bondDetails[2];
-    const pendingPayout = await bondContract.pendingPayoutFor(params.address);
-
-    let allowance;
-    let balance;
-    if (params.bond === "klima_bct_lp") {
-      allowance = await reserveContract.allowance(
-        params.address,
-        addresses["mainnet"].bond_klimaBctLp
-      );
-      balance = await reserveContract.balanceOf(params.address);
-      balance = ethers.utils.formatUnits(balance, "ether");
-    } else if (params.bond === "bct") {
-      allowance = await reserveContract.allowance(
-        params.address,
-        addresses["mainnet"].bond_bct
-      );
-      balance = await reserveContract.balanceOf(params.address);
-      balance = ethers.utils.formatEther(balance);
-    } else if (params.bond === "bct_usdc_lp") {
-      allowance = await reserveContract.allowance(
-        params.address,
-        addresses["mainnet"].bond_bctUsdcLp
-      );
-      balance = await reserveContract.balanceOf(params.address);
-      balance = ethers.utils.formatEther(balance);
-    } else if (params.bond === "klima_usdc_lp") {
-      allowance = await reserveContract.allowance(
-        params.address,
-        addresses["mainnet"].bond_klimaUsdcLp
-      );
-      balance = await reserveContract.balanceOf(params.address);
-      balance = ethers.utils.formatEther(balance);
-    } else if (params.bond === "mco2") {
-      allowance = await reserveContract.allowance(
-        params.address,
-        addresses["mainnet"].bond_mco2
-      );
-      balance = await reserveContract.balanceOf(params.address);
-      balance = ethers.utils.formatEther(balance);
-    }
-
-    dispatch(
-      setBondAllowance({
-        [params.bond]: formatUnits(allowance),
-      })
-    );
-    dispatch(
-      setBond({
-        bond: params.bond,
-        balance,
-        interestDue: ethers.utils.formatUnits(interestDue, "gwei"),
-        bondMaturationBlock,
-        pendingPayout: ethers.utils.formatUnits(pendingPayout, "gwei"),
-      })
-    );
+    }); */
   };
 };
 

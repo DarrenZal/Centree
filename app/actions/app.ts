@@ -1,4 +1,5 @@
 import { ethers, providers } from "ethers";
+import { getDefaultProvider } from "@ethersproject/providers";
 
 import { Thunk } from "state";
 import { setAppState } from "state/app";
@@ -8,62 +9,28 @@ import { addresses, ESTIMATED_DAILY_REBASES } from "@klimadao/lib/constants";
 import DistributorContractv4 from "@klimadao/lib/abi/DistributorContractv4.json";
 import SKlima from "@klimadao/lib/abi/sKlima.json";
 import IERC20 from "@klimadao/lib/abi/IERC20.json";
+import Centree from "@klimadao/lib/abi/Centree.json";
 
-export const loadAppDetails = (params: {
-  provider: providers.JsonRpcProvider;
-  onRPCError: () => void;
-}): Thunk => {
+export const loadAppDetails = (params: { onRPCError: () => void }): Thunk => {
   return async (dispatch) => {
     try {
-      const currentBlock = await params.provider.getBlockNumber();
-
-      const distributorContract = new ethers.Contract(
-        addresses["mainnet"].distributor,
-        DistributorContractv4.abi,
-        params.provider
+      //alert("start");
+      const provider = await getDefaultProvider("ropsten");
+      const CentreeContract = new ethers.Contract(
+        "0x57E99cBB69FBBd90d671f5EaBddc984D2402836E",
+        Centree.abi,
+        provider
       );
-      const sKlimaContract = new ethers.Contract(
-        addresses["mainnet"].sklima,
-        IERC20.abi,
-        params.provider
-      );
-      const sKlimaMainContract = new ethers.Contract(
-        addresses["mainnet"].sklima,
-        SKlima.abi,
-        params.provider
-      );
-
       const promises = [
-        distributorContract.info(0),
-        sKlimaMainContract.circulatingSupply(),
-        sKlimaContract.balanceOf("0x693aD12DbA5F6E07dE86FaA21098B691F60A1BEa"),
-        getTreasuryBalance(),
-        distributorContract.nextEpochBlock(),
+        CentreeContract.ctr_price(),
+        CentreeContract.projects_fund_amount(1),
       ];
-      const [info, circSupply, currentIndex, treasuryBalance, rebaseBlock] =
-        await Promise.all(promises);
-
-      const promises2 = [distributorContract.nextRewardAt(info.rate)];
-
-      const [stakingReward] = await Promise.all(promises2);
-
-      const stakingRebase = stakingReward / circSupply;
-      const fiveDayRate =
-        Math.pow(1 + stakingRebase, 5 * ESTIMATED_DAILY_REBASES) - 1;
-      const stakingAPY = Math.pow(
-        1 + stakingRebase,
-        365 * ESTIMATED_DAILY_REBASES
-      );
+      const [ctrPrice, fairycreekfundsraised] = await Promise.all(promises);
 
       dispatch(
         setAppState({
-          currentIndex: ethers.utils.formatUnits(currentIndex, "gwei"),
-          currentBlock,
-          fiveDayRate,
-          stakingAPY,
-          stakingRebase,
-          treasuryBalance,
-          rebaseBlock: rebaseBlock.toNumber(),
+          ctrPrice: ctrPrice.toNumber(),
+          fairycreekfundsraised: fairycreekfundsraised.toNumber(),
         })
       );
     } catch (error: any) {

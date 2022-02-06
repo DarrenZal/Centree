@@ -212,7 +212,7 @@ export const Vouchers = (props: Props) => {
       <div className={styles.conserveCard_header}>
         <h2 className={t.h4}>Vouchers</h2>
         <p className={t.body2}>
-          <a target="_blank" href="http://localhost:3000/">
+          <a target="_blank" href="https://vouchers-tool.netlify.app/create_voucher">
             <div className={styles.bondLink} key={34324}>
               <div>
                 <h3 className={T.subtitle2}>Create Vouchers</h3>
@@ -225,7 +225,7 @@ export const Vouchers = (props: Props) => {
 
             </div>
           </a><br/>
-          <a target="_blank" href="http://localhost:3000/marketplace">
+          <a target="_blank" href="https://vouchers-tool.netlify.app/marketplace">
             <div className={styles.bondLink} key={34324}>
               <div>
                 <h3 className={T.subtitle2}>Browse Vouchers</h3>
@@ -238,7 +238,7 @@ export const Vouchers = (props: Props) => {
 
             </div>
           </a><br/>
-          <a target="_blank" href="http://localhost:3000/marketplace">
+          <a target="_blank" href="https://communityinclusioncurrencies.firebaseapp.com/">
             <div className={styles.bondLink} key={34324}>
               <div>
                 <h3 className={T.subtitle2}>Create a community currency</h3>

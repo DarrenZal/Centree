@@ -221,7 +221,17 @@ export const Vote = (props: Props) => {
           <LeftOutlined />
           <Trans id="nav.back">BACK</Trans>
         </Link>
-      Vote with CTR to conserve forests...
+        <Link to="FairyCreek" key="FairyCreekKey">
+            <div className={styles.bondLink} key="Save Fairy Creek">
+              <div>
+                <h3 className="this classname">Save Fairy Creek</h3>
+                <p
+                  className="test classname"
+                >
+                </p>
+              </div>
+            </div>
+          </Link>
       <div className={styles.inputsContainer}>
       
       </div>

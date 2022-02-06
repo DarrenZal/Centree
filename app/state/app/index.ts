@@ -22,6 +22,8 @@ interface AppState {
   rebaseBlock: number | undefined;
   locale: string | undefined;
   notificationStatus: AppNotificationStatus | null;
+  ctrPrice: number | undefined;
+  fairycreekfundsraised: number | undefined;
 }
 
 const initialState: AppState = {
@@ -34,6 +36,8 @@ const initialState: AppState = {
   rebaseBlock: undefined,
   locale: undefined,
   notificationStatus: null,
+  ctrPrice: undefined,
+  fairycreekfundsraised: undefined,
 };
 
 export const appSlice = createSlice({

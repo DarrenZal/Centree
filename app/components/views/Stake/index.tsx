@@ -207,11 +207,11 @@ export const Stake = (props: Props) => {
   return (
     <div className={styles.stakeCard}>
       <div className={styles.stakeCard_header}>
-        <h2 className={t.h4}>Stake KLIMA.</h2>
+        <h2 className={t.h4}>Stake CTR.</h2>
         <p className={t.body2}>
           Hold, stake, and compound. If the protocol earns a profit selling
-          carbon bonds, these rewards are shared among all holders of staked
-          KLIMA (sKLIMA).
+          NFT bonds, these rewards are shared among all holders of staked
+          CTR (sCTR).
         </p>
       </div>
       <div className={styles.inputsContainer}>
@@ -299,7 +299,7 @@ export const Stake = (props: Props) => {
             Staked
             <TextInfoTooltip
               singleton={singleton}
-              content="Staked KLIMA generating interest"
+              content="Staked CTR generating interest"
             >
               <div tabIndex={0} className={styles.infoIconWrapper}>
                 <InfoOutlined />

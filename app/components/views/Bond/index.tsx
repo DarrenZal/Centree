@@ -13,7 +13,7 @@ import {
   changeApprovalTransaction,
   bondTransaction,
   redeemTransaction,
-  calcBondDetails,
+  //calcBondDetails,
   calculateUserBondDetails,
 } from "actions/bonds";
 
@@ -156,30 +156,7 @@ export const Bond: FC<Props> = (props) => {
     }
   };
 
-  useEffect(() => {
-    async function loadBondDetails() {
-      if (props.provider) {
-        dispatch(
-          calcBondDetails({
-            bond: props.bond,
-            value: debouncedQuantity,
-            provider: props.provider,
-          })
-        );
-      }
-      if (props.provider && props.address) {
-        dispatch(
-          calculateUserBondDetails({
-            address: props.address,
-            bond: props.bond,
-            provider: props.provider,
-          })
-        );
-        setRecipientAddress(props.address);
-      }
-    }
-    loadBondDetails();
-  }, [debouncedQuantity, props.address]);
+  
 
   const handleAllowance = async () => {
     try {
