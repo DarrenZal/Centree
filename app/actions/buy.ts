@@ -23,8 +23,6 @@ export const buyCTR = async (params: {
       params.provider.getSigner()
     );
     params.onStatus("userConfirmation", "");
-    alert(params.address);
-    alert(params.value);
     const txn = await contract.buyCTR(params.address, {
       gasPrice: ethers.utils.parseUnits("100", "gwei"),
       gasLimit: "99000",
