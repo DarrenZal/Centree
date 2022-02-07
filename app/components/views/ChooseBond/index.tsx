@@ -22,10 +22,6 @@ export const useBond = (bond: Bond) => {
     discount: bondState?.bondDiscount,
     name: {
       mco2: "Fairy Creek",
-      bct: "BCT",
-      klima_usdc_lp: "KLIMA/USDC LP",
-      klima_bct_lp: "BCT/KLIMA LP",
-      bct_usdc_lp: "BCT/USDC LP",
       // future bond names go here
     }[bond],
     description: {
@@ -62,14 +58,10 @@ export const useBond = (bond: Bond) => {
 };
 
 export function ChooseBond() {
-  const bct = useBond("bct");
-  const klimaBctLp = useBond("klima_bct_lp");
-  const bctUsdcLp = useBond("bct_usdc_lp");
   const mco2 = useBond("mco2");
-  const klimaUsdcLp = useBond("klima_usdc_lp");
   const { treasuryBalance } = useSelector(selectAppState);
 
-  const bonds = [mco2, bct, klimaUsdcLp, klimaBctLp, bctUsdcLp];
+  const bonds = [mco2];
 
   return (
     <div className={styles.stakeCard}>

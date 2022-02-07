@@ -92,19 +92,19 @@ export const FairyCreek = (props: Props) => {
         Project id: 0<br/>
         Funding threshold: 1000000 wei<br/>
         Funding raised: {fairycreekfundsraised} wei<br/>
-        <a target="_blank" href="https://vouchers-tool.netlify.app/marketplace">
+        <a target="_blank" href="https://render.nira.app/a/O5uHGESDSQ2Cq4cqvO00gg/1">
             <div className={styles.bondLink} key={34324}>
               <div>
-                <h3 className={T.subtitle2}>View 3D rendering</h3>
+                <h3 className={T.subtitle2}>View Forest</h3>
                 <p
                   className={classNames(styles.bondLink_description, T.caption)}
                 >
-                </p>s
+                </p>
               </div>
 
             </div>
-          </a><br/>
-        <h2><b>Vote</b></h2>
+          </a>
+        <h2><u><b>Vote</b></u></h2>
         Amount of CTR to vote with: <br/>
         <div className={styles.inputsContainer}>
       <input
@@ -114,8 +114,7 @@ export const FairyCreek = (props: Props) => {
             placeholder={`0`}
             min="0"
       />
-      Amount in wei: ...<br/>
-      <button type="button" >Submit</button>
+      <b><button type="button">Submit</button></b>
       </div>
 
     </div>
